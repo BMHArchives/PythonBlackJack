@@ -19,7 +19,7 @@ class TestDeckService(unittest.TestCase):
       # Test the behavior that the service can shuffle a deck of cards
       def test_CardShuffling(self):
           ShuffleCardDeck = self.cds.ShuffleCardDeck()
-          self.assertEquals(len(ShuffleCardDeck), 52)
+          self.assertEqual(len(ShuffleCardDeck), 52)
      
       # Test to confirm that the card deck service shuffle a card by comparing the card before it was 
       # shuffled and then after the card deck was shuffle.  
