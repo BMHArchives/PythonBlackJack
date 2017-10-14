@@ -1,7 +1,10 @@
 # DeckService.py - This is a class that will provide functionality to serve as a Card Deck Service to the consumer
+import random
 class CardDeckService:
 
       _cardDeck = {}
+      ShuffledCardDeck = {}
+      SelectedCards = {}
       _masterCardDeck = {}
       def __init__(self):
           self._masterCardDeck = self.BuildCardDeck()
@@ -36,15 +39,44 @@ class CardDeckService:
               return None
           
     
-      def ShuffleCardDeck(self, CardDeck):
+      def ShuffleCardDeck(self):
+          self.ShuffledCardDeck = {}
+          
+          # Copy the _cardDeck keys to a list
+          listOfKeys = list(self._cardDeck.keys())
+          
+          # Shuffle the keys using random.shuffle
+          rnd = random.shuffle(listOfKeys)
+
+          # Set the shuffle keys into the new dictionary
+          for key in listOfKeys:
+              self.ShuffledCardDeck[key] = self._cardDeck[key]
+          
+          
+          return self.ShuffledCardDeck
           pass
     
       def DealCard(self):
-          pass
+          # Get the next card in the shuffle deck
+          SelectedCard = list(self.ShuffledCardDeck.keys())[0]
+
+          # Keep track the card that was dealt
+          self.SelectedCards[SelectedCard] = self.ShuffledCardDeck[SelectedCard]
+
+          # Removed the selected card from the shuffled card deck
+          del self.ShuffledCardDeck[SelectedCard]
+
+          # Retrun the card back to the consumer
+          return SelectedCard
     
       def GetCardValue(self, CardKey):
-          pass
+          
+          # Get the master card deck
+          CardValue =self._cardDeck[CardKey]
 
-svc = CardDeckService()
-CardDeck = svc.BuildCardDeck()
-print(CardDeck)
+          # Return the card value back to the consumer
+          return CardValue
+
+cds = CardDeckService()
+cds.ShuffleCardDeck()
+CardValue = cds.DealCard()
