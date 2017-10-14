@@ -2,7 +2,7 @@ language: python
 python:
   - 3.6.3
 script:
-  - python -m unittest discover ".//Test"
+  - python -m unittest discover ".//Test" "*_test.py"
 notifications:
   email: 
     - brandonmichaelhunter@live.com
