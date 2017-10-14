@@ -1,9 +1,9 @@
 language: python
-  python:
-    - 3.6.3
-  script:
-    - cd Test
-    - python -m unittest discover
-  notifications:
-    email: 
-      - brandonmichaelhunter@live.com
+python:
+  - 3.6.3
+script:
+  - cd Test
+  - python -m unittest discover
+notifications:
+  email: 
+    - brandonmichaelhunter@live.com
