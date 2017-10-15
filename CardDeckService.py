@@ -8,6 +8,7 @@ class CardDeckService:
       _masterCardDeck = {}
       def __init__(self):
           self._masterCardDeck = self.BuildCardDeck()
+          self.ShuffleCardDeck()
       
       def BuildCardDeck(self):
           cardTypes = "Clubs,Spads,Diamons,Hearts".split(",")
@@ -54,9 +55,12 @@ class CardDeckService:
           
           
           return self.ShuffledCardDeck
-          pass
-    
+      
+      # Documentation
       def DealCard(self):
+          """ Returns the Card Type only to the consumer
+          :param Empty:.
+          """
           # Get the next card in the shuffle deck
           SelectedCard = list(self.ShuffledCardDeck.keys())[0]
 
