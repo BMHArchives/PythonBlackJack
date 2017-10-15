@@ -5,6 +5,6 @@ script:
   - python -m unittest discover ".//Test" "*_test.py"
 notifications:
   email: 
-    - brandonmichaelhunter@live.com
+    - blufftonpythondude@gmail.com
   on_success: always
   on_failure: always
