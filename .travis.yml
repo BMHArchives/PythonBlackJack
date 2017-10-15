@@ -6,3 +6,5 @@ script:
 notifications:
   email: 
     - brandonmichaelhunter@live.com
+  on_success: always
+  on_failure: always
