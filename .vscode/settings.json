@@ -4,7 +4,7 @@
         "-s",
         ".\\Test",
         "-p",
-        "*test.py"
+        "*_test.py"
     ],
     "python.unitTest.unittestEnabled": true
 }
