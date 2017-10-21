@@ -30,7 +30,7 @@ class CardDeckService:
                         value = ""
                         # Determine value
                         if cardNumber == "A":
-                            value = "1or21"
+                            value = "1or10"
                         elif cardNumber == "Q" or cardNumber == "K" or cardNumber == "J":
                             value = "10"
                         else:
@@ -83,6 +83,4 @@ class CardDeckService:
           # Return the card value back to the consumer
           return CardValue
 
-cds = CardDeckService()
-cds.ShuffleCardDeck()
-CardValue = cds.DealCard()
+
