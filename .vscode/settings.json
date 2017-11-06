@@ -1,10 +1,20 @@
 {
-    "python.unitTest.unittestArgs": [
-        "-v",
-        "-s",
-        ".\\Test",
-        "-p",
-        "*_test.py"
-    ],
-    "python.unitTest.unittestEnabled": true
+
+    "python.unitTest.unittestArgs": [ "-v","-s", ".//Test", "-p", "*_test.py" ],
+    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.pythonPath": "C:\\Program Files\\Python36\\python.exe",
+    "python.unitTest.outputWindow": "Python Test Log",
+    // Controls if quick suggestions should show up while typing
+    //"editor.quickSuggestions": true,
+    // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
+    //"editor.acceptSuggestionOnEnter": "on",
+    // Controls the delay in ms after which quick suggestions will show up.
+    //"editor.quickSuggestionsDelay": 10,
+    // Enable word based suggestions
+    //"editor.wordBasedSuggestions": true,
+    // Enable parameter hints
+    "editor.parameterHints": true,
+    "explorer.autoReveal": false
 }
