@@ -2,49 +2,42 @@
 
 import unittest
 import User
+import CardDeckService
 class TestDeckService(unittest.TestCase):
       
-      svc = None
+      UserSvc = None
+      CardDeckSvc = None
       def setUp(self):
-          self.svc = User.User()
-    
-      # Make sure we can capture the username that the consumer submits
-      def test_GetUserName(self):
-          UserName = self.svc.GetUserName("Brandon")
-          self.assertIsNotNone(UserName)
+          self.UserSvc = User.User()
+          self.CardDeckSvc = CardDeckService.CardDeckService()
+        #   CardDeckSvc = CardDeckService.CardDeckService()
+        #   CardDeckSvc.BuildCardDeck()
+        #   CardDeckSvc.ShuffleCardDeck()
       
-      # Make sure the user gets two playing cards
-      def test_GetInitalPlayingCards(self):
-          playingCards = self.svc.GetInitalPlayingCards()
-          self.assertEqual(len(playingCards), 2)
-      
+      def test_SettingTheUserName(self):
+          svc = self.UserSvc
+          svc.SetUserName("Brandon")
+          ActualUserName = svc.GetUserName()
+          ExpectedUserName = "Brandon"
+          self.assertEqual(ExpectedUserName, ActualUserName)  
+
       # Make sure that we can get the total bets that the user made on the current game.
       def test_GetUserBets(self):
-          UserBet = 200.00
-          self.svc.MakeBet(UserBet)
-          UserBet = 300.00
-          self.svc.MakeBet(UserBet)
-          What_Did_The_User_Bet = self.svc.GetUserBets()
+          svc = self.UserSvc
+          svc.SetBet(200.00)
+          svc.SetBet(300.00)
+          What_Did_The_User_Bet = svc.GetBets()
           self.assertEqual(What_Did_The_User_Bet, 500.00)
       
-      # Confirm that a user can make a bet.
-      def test_MakeBet(self):
-          UserBet = 200
-          self.svc.MakeBet(UserBet)
-          User_Current_Bet = self.svc.UserBets
-          self.assertEqual(User_Current_Bet, UserBet)
-      
-      # Confirm that a user can get a card
-      def test_Hit_GetACard(self):
-          self.svc.GetInitalPlayingCards()
-          self.svc.HitOrStay(True)
-          self.assertEqual(len(self.svc.playingCards),3)
-        
-      # Confirm that a user can stay and not get a new card
-      def test_Stay_DoNotGetACard(self):
-          self.svc.GetInitalPlayingCards()
-          self.svc.HitOrStay(False)
-          self.assertEqual(len(self.svc.playingCards),2)
+      def test_SetCardValue_Confirm_A_Card_Value_Was_Set(self):
+          UserSvc = self.UserSvc
+          CardDeckSvc = self.CardDeckSvc
+
+          CardValue = 10
+          UserSvc.SetCurrentHandValue(CardValue)
+          ExpectedValue = 10
+          ActualValue = UserSvc.GetCurrentHandValue()
+          self.assertEqual(ExpectedValue, ActualValue)
 
 if __name__ == '__main__':
     unittest.main()
