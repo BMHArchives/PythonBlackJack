@@ -1,27 +1,66 @@
-# Dealer.py - represents an instance of a Black Jack Dealer
+# Dealer.py - This class has the following responsiblity
+# 1 - Deal the intial 2 cards to the user.
+# 3 - Deal cards to the user when its their turn
+# 4 - Declare winners and how much they won.
+# 5 - Create players 
 import User
+import CardDeckService
 class Dealer:
       UserBetsAmount = 0
+      PlayingCards = []
       UserCards = []      
-      def __int__(self):
-          pass
-      # DealCardsToPlayer(Player) - dealer deals cards to user
-      def DealCardsToPlayer(self, Player):
-          pass
-      def GetInitialPlayingCards(self):
-          pass
+      Players = []
+      CardDeckSvc = None
 
-      def CalculatePlayerCardsValue(self, Player):
-          pass
+      Players = []
+      def __init__(self):
+          self.CardDeckSvc = CardDeckService.CardDeckService()
+          self.CardDeckSvc.BuildCardDeck()
+          self.CardDeckSvc.ShuffleCardDeck()
+
+      # Deals initlal cards to users
+      def DealStarterCards(self):
+
+          playingCards = []
+          
+          playingCards = []
+          svc = self.CardDeckSvc
+          playingCards.append(svc.GetCard())
+          playingCards.append(svc.GetCard())
+
+          return playingCards
       
-      def RequestBet(self, Amount, Player):
-          pass
-      # RequestBet(Amount, User) - dealer request the user to make a bet
-      # _CalculateUsersCardsCount(Player) - dealer counts current value of the player's card
-      # _CalculateDealerCardsCount() - dealer counts their own hands
-      # DisplayPlayersCards(Player) - dealer displays players cards
-      # DisplayDealerCards() - dealer displays cards
-      # HitOrStay() - dealer decides if they want another card or not
-      # PlayerHitOrStay() - dealer ask if the user wants to another card or not.
-      # ShowCardsValue() - Displays dealers his\her hand
-      # DeclareWinner(Player) - Dealer decalres the winner, looser or busy
+      def DealCard(self):
+          svc = self.CardDeckSvc
+          return svc.GetCard()
+      def CreatePlayers(self, NumberOfPlayers):
+          """
+          CreatePlayers(NumberOfPlayers) - Creates x number of players based on the NumerOfPlayers variable value.
+          param: NumberOfPlayers - represents the number of players to create.
+          """
+          
+          for value in range(NumberOfPlayers):
+              # Create the User object
+              player = None
+              player = User.User()
+              player.IsDealer = False
+              self.Players.append(player)
+        
+          # Add the dealer user
+          player = None
+          player = User.User()
+          player.IsDealer = True
+          self.Players.append(player)
+    
+      def GetCardHandValue(self, PlayingCard):
+          CardValue = None
+          cds = self.CardDeckSvc
+
+          #Look up the card value and return back to the consumer 
+          CardValue = cds.GetCardValue(PlayingCard)
+          
+          return CardValue
+   
+
+
+
