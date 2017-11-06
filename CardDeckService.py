@@ -1,21 +1,26 @@
-# DeckService.py - This is a class that will provide functionality to serve as a Card Deck Service to the consumer
+# DeckService.py - This class responsbility is the following:
+# 1 - Create a card deck that has 52 cards
+# 2 - Shuffle the card deck
+# 3 - Get a card value.
 import random
 class CardDeckService:
 
-      _cardDeck = {}
-      ShuffledCardDeck = {}
-      SelectedCards = {}
-      _masterCardDeck = {}
-      def __init__(self):
-          self._masterCardDeck = self.BuildCardDeck()
 
-          _cardDeck = {}
-          ShuffledCardDeck = self.ShuffleCardDeck()
-          SelectedCards = {}
-          _masterCardDeck = {}
+      ShuffledCardDeck = None
+      SelectedCards    = None
+      MasterCardDeck   = None
+      
+      def __init__(self):
+          self.ShuffledCardDeck = {}
+          self.SelectedCards = {}
+          self.MasterCardDeck = {}
       
       def BuildCardDeck(self):
-          cardTypes = "Clubs,Spads,Diamons,Hearts".split(",")
+          """
+          BuildCardDeck() - builds a card deck of 52 cards 
+          """
+          cardDeck = {}
+          cardTypes = "Clubs,Spades,Diamonds,Hearts".split(",")
           cardNumbers= "A,2,3,4,5,6,7,8,9,10,J,Q,K".split(",")
           try:
               # Loop through the cardTypes array
@@ -36,51 +41,54 @@ class CardDeckService:
                         else:
                             value = cardNumber
                         
-                        # Add to consumer cardDeck dictionary
-                        self._cardDeck[key] = value
-                
-                return self._cardDeck
+                        # Add to consumer MasterCardDeck dictionary
+                        self.MasterCardDeck[key] = value
           except:
-              return None
+              print("BuildCardDeck() - Error")
           
     
       def ShuffleCardDeck(self):
-          self.ShuffledCardDeck = {}
+          """
+          ShuffleCardDeck() - Shuffles the card deck in a random order and returns the shuffle card deck back to the consumer.
+          """
+          try:
+              self.ShuffledCardDeck = {}
           
-          # Copy the _cardDeck keys to a list
-          listOfKeys = list(self._cardDeck.keys())
-          
-          # Shuffle the keys using random.shuffle
-          rnd = random.shuffle(listOfKeys)
+              # Copy the keys (Cards Display Name) to a local list
+              Cards = list(self.MasterCardDeck.keys())
 
-          # Set the shuffle keys into the new dictionary
-          for key in listOfKeys:
-              self.ShuffledCardDeck[key] = self._cardDeck[key]
-          
-          
-          return self.ShuffledCardDeck
-      
-      # Documentation
-      def DealCard(self):
-          
-          # Get the next card in the shuffle deck
-          SelectedCard = list(self.ShuffledCardDeck.keys())[0]
+              # Shuffle the keys using random.shuffle
+              rnd = random.shuffle(Cards)
 
-          # Keep track the card that was dealt
-          self.SelectedCards[SelectedCard] = self.ShuffledCardDeck[SelectedCard]
-
-          # Removed the selected card from the shuffled card deck
-          del self.ShuffledCardDeck[SelectedCard]
-
-          # Retrun the card back to the consumer
-          return SelectedCard
-    
+              # Set the shuffle keys into the new dictionary
+              for Card in Cards:
+                  self.ShuffledCardDeck[Card] = self.GetCardValue(Card)
+          except:
+              print("ShuffleCardDeck() - Error")
+          
       def GetCardValue(self, CardKey):
-          
+          """
+          GetCardValue(CardKey) - Retrieves a card's numeric value
+          param CardKey: represents tehe the Card face name.
+          """
           # Get the master card deck
-          CardValue =self._cardDeck[CardKey]
+          CardValue =self.MasterCardDeck[CardKey]
 
           # Return the card value back to the consumer
           return CardValue
+      
+      
+      
+      
+      
+      def GetCard(self):
+          PlayingCard = list(self.ShuffledCardDeck.keys())[0]
+
+          # Remove the card from the ShuffledCardDeck
+          del self.ShuffledCardDeck[PlayingCard]
+
+          # return the card back to the consumer
+          return PlayingCard
+
 
 
