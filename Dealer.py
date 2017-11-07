@@ -47,10 +47,10 @@ class Dealer:
               self.Players.append(player)
         
           # Add the dealer user
-          player = None
-          player = User.User()
-          player.IsDealer = True
-          self.Players.append(player)
+          #player = None
+          #player = User.User()
+          #player.IsDealer = True
+          #self.Players.append(player)
     
       def GetCardHandValue(self, PlayingCard):
           CardValue = None
