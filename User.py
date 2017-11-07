@@ -12,7 +12,7 @@ class User:
     PlayingCards = [] # Stores the user's playing cards
     CardDeckSvc = None # Represents an instance of the CardDeckService
     CurrentCardValues = None # Stores the user playing cards values
-    IsWinner = False
+    Busted = False # Determines if the user busted or not.
     # def __new__(cls, *p, **k):
     #      inst = object.__new__(cls)
     #      return inst
