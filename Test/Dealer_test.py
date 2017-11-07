@@ -1,5 +1,6 @@
 import unittest
 import Dealer
+import User
 class TestDealerInstance(unittest.TestCase):
 
       Dealer = None
@@ -39,7 +40,7 @@ class TestDealerInstance(unittest.TestCase):
           # Create 2 players
           svc = self.Dealer
           svc.CreatePlayers(2)
-          Expected_Number_Of_Players_Created = 3
+          Expected_Number_Of_Players_Created = 2
           Actual_Number_Of__Players_Created = len(svc.Players)
 
           # Confirm that two players were created
@@ -65,11 +66,8 @@ class TestDealerInstance(unittest.TestCase):
           Player.SetBet(100.00)
 
           Dealer = None
-          # - Have the dealer play
-          for PlayerRec in svc.Players:
-              if PlayerRec.IsDealer == True:
-                 Dealer = PlayerRec
-                 pass
+          Dealer = User.User()
+          
 
           # - Plays gets one additional hand
           Dealer.GetPlayingCard("8 - Hearts")
